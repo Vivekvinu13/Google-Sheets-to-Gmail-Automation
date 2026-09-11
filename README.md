@@ -6,6 +6,11 @@ This n8n automation processes student data, applies business rules, structures p
 
 The workflow is designed as part of the CAIE Course Program — Assignment 9: n8n Automation: Google Sheets to Gmail.
 
+The automation supports two types of communication:
+
+- **Welcome/confirmation email** for students who have paid their fees.
+- **Payment reminder email** for students whose fees are not yet paid.
+
 ## 🎯 Assignment Objective
 
 The assignment requires an n8n workflow that:
@@ -44,5 +49,14 @@ Switch
 IF
         ↓
 Switch1
-        ↓
-Send Welcome Email
+      ↓
+Validate Email
+      ↓
+     ┌───────────────────────────┐
+     │                           │
+     ↓                           ↓
+Paid Students              Unpaid Students
+     ↓                           ↓
+Welcome Email              Payment Reminder
+     ↓                           ↓
+    Gmail                     Gmail
